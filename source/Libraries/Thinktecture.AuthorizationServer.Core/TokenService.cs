@@ -128,7 +128,8 @@ namespace Thinktecture.AuthorizationServer
                 issuer: globalConfiguration.Issuer,
                 audience: request.Application.Audience,
                 claims: claims,
-                lifetime: new Lifetime(DateTime.UtcNow, DateTime.UtcNow.AddMinutes(request.Application.TokenLifetime)),
+				notBefore: DateTime.UtcNow,
+				expires: DateTime.UtcNow.AddMinutes(request.Application.TokenLifetime),
                 signingCredentials: request.Application.SigningCredentials);
 
             return token;
